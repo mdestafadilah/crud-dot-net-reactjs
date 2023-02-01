@@ -59,7 +59,7 @@ export default function PesertaForm(props) {
 							id="namaDepan"
 							placeholder="Nama Depan"
 							onChange={handleChangeInput}
-							value={props.namaDepan}
+							value={peserta.namaDepan}
 						/>
 					</div>
 					<div className="form-group col-md-12">
@@ -71,7 +71,7 @@ export default function PesertaForm(props) {
 							id="namaBelakang"
 							placeholder="Nama Belakang"
 							onChange={handleChangeInput}
-							value={props.namaBelakang}
+							value={peserta.namaBelakang}
 						/>
 					</div>
 				</div>

@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
+import { Alert } from 'reactstrap';
+
 
 export default function PesertaForm(props) {
+	const initPeserta = { id: null, namaDepan: "", namaBelakang: "" };
+	const [peserta, setPeserta] = useState(initPeserta);
 
-	const initPeserta = {id:null,namaDepan:'',namaBelakang:''};
-	const [peserta, setPeserta] = useState(initPeserta)
-
-	const [errorMsg, setErrorMsg] = useState('');
+	const [errorMsg, setErrorMsg] = useState("");
 	const { namaDepan, namaBelakang } = peserta;
-
 
 	// handle form peserta
 	const handleOnSubmit = (e) => {
@@ -16,37 +16,38 @@ export default function PesertaForm(props) {
 
 		// Assign state to array
 		const values = [namaDepan, namaBelakang];
-		let errorMsg = ''; 
+		let errorMsg = "";
 
 		// Clean HTML using Every Function
 		const allFieldsFilled = values.every((field) => {
 			const value = `${field}`.trim();
-			return value !== '' && value !== '0';
+			return value !== "" && value !== "0";
 		});
 
 		if (allFieldsFilled) {
 			const peserta = {
 				id: uuidv4(),
 				namaDepan,
-				namaBelakang
-			}
+				namaBelakang,
+			};
 			// handleChangeInput(e, props.addPeserta(peserta));
 			console.log(peserta);
 		} else {
-			errorMsg = 'Tolong Isi semua!';
+			errorMsg = "Tolong Isi semua!";
 		}
 		setErrorMsg(errorMsg);
-	}
+	};
 
 	// handle inputan
 	const handleChangeInput = (e) => {
-		const {name, value} = e.target;
-        setPeserta({...peserta, [name]: value});
-	}
+		const { name, value } = e.target;
+		setPeserta({ ...peserta, [name]: value });
+	};
 
 	return (
 		<div>
 			<h2>Tambah Peserta</h2>
+			{errorMsg && <Alert color="danger">{errorMsg}</Alert>}
 			<form>
 				<div className="row">
 					<div className="form-group col-md-12">
@@ -75,7 +76,11 @@ export default function PesertaForm(props) {
 					</div>
 				</div>
 				<br />
-				<button type="submit" className="btn btn-danger" onClick={handleOnSubmit}>
+				<button
+					type="submit"
+					className="btn btn-danger"
+					onClick={handleOnSubmit}
+				>
 					Tambah
 				</button>
 			</form>

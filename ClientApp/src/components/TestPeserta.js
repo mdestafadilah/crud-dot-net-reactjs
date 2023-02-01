@@ -20,6 +20,10 @@ export const TestPeserta = () => {
                   <td>{user.namaPeserta}</td>
                   <td>{user.namaTest}</td>
                   <td>{user.status}</td>
+                  <td>
+                        <button className="btn btn-primary">Delete</button>
+                        <button className="btn btn-info">Edit</button>
+                  </td>
               </tr>
           )
     }

@@ -4,9 +4,9 @@ export default function PesertaList() {
 
     const peserta = [
         {'id':1,namaPeserta:'haikal',namaTest:'abdullah', status:'Selesai'},
-        {'id':1,namaPeserta:'ziyad',namaTest:'muhammad', status:'Selesai'},
-        {'id':1,namaPeserta:'shaka',namaTest:'abdurrahman', status:'Selesai'},
-        {'id':1,namaPeserta:'desta',namaTest:'fadilah', status:'Selesai'}
+        {'id':2,namaPeserta:'ziyad',namaTest:'muhammad', status:'Selesai'},
+        {'id':3,namaPeserta:'shaka',namaTest:'abdurrahman', status:'Selesai'},
+        {'id':4,namaPeserta:'desta',namaTest:'fadilah', status:'Selesai'}
       ];
   
       console.log('peserta length:::', peserta.length)
@@ -19,7 +19,10 @@ export default function PesertaList() {
                     <td>{index + 1}</td>
                     <td>{user.namaPeserta}</td>
                     <td>{user.namaTest}</td>
-                    <td>{user.status}</td>
+                    <td>
+                        <button className="btn btn-primary">Delete</button>
+                        <button className="btn btn-info">Edit</button>
+                    </td>
                 </tr>
             )
       }

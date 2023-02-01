@@ -1,22 +1,18 @@
 import React from "react";
-import PesertaForm from "./PesertaForm";
-import PesertaList from "./PesertaList";
+import PesertaForm from "./forms/PesertaForm";
+import PesertaList from "./tables/PesertaList";
 
 export const Peserta = () => {
-	const handleOnSubmit = (peserta) => {
-		console.log(peserta);
-	};
-
 	return (
 		<>
-				<div className="row">
-					<div className="col-md-5">
-						<PesertaForm handleSubmit={handleOnSubmit} />
-					</div>
-          <div className="col-md-7">
-            <PesertaList />
-          </div>
+			<div className="row">
+				<div className="col-md-5">
+					<PesertaForm />
 				</div>
+				<div className="col-md-7">
+					<PesertaList />
+				</div>
+			</div>
 		</>
 	);
 };

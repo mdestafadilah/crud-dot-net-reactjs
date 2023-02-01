@@ -1,6 +1,6 @@
 import React from "react";
-import TestForm from "./TestForm";
-import TestList from "./TestList";
+import TestForm from "./forms/TestForm";
+import TestList from "./tables/TestList";
 
 export const Test = () => {
 	const handleOnSubmit = (peserta) => {
@@ -13,9 +13,9 @@ export const Test = () => {
 				<div className="col-md-5">
 					<TestForm handleSubmit={handleOnSubmit} />
 				</div>
-        <div className="col-md-5">
-          <TestList />
-        </div>
+				<div className="col-md-5">
+					<TestList />
+				</div>
 			</div>
 		</>
 	);

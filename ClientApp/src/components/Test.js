@@ -1,7 +1,7 @@
 import React from 'react'
-import PesertaForm from './PesertaForm'
+import TestForm from './TestForm'
 
-export const Peserta = () => {
+export const Test = () => {
 
   const handleOnSubmit = (peserta) => {
     console.log(peserta);
@@ -9,7 +9,7 @@ export const Peserta = () => {
 
   return (
     <div>
-      <PesertaForm handleSubmit={handleOnSubmit}/>
+      <TestForm handleSubmit={handleOnSubmit}/>
     </div>
   )
 }

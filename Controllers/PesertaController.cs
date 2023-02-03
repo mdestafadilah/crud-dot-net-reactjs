@@ -9,7 +9,7 @@ namespace crud.Controllers;
 [Route("api/[controller]")]
 public class PesertaController : ControllerBase
 {
-    // Implementation ...
+    // Buat Koneksi Ke DB
     private readonly MyCrudDbContext _myCrudDbContext;
     public PesertaController(MyCrudDbContext myCrudDbContext)
     {

@@ -1,4 +1,5 @@
-namespace crud;
+namespace crud.Data.Entities;
+
 public class Test 
 {
     public int Id { get; set; }

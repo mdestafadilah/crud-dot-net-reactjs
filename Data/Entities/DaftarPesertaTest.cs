@@ -1,4 +1,4 @@
-namespace crud;
+namespace crud.Data.Entities;
 
 public class DaftarPesertaTest 
 {

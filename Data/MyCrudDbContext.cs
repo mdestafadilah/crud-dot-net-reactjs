@@ -1,8 +1,14 @@
+using crud.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 
-public class CrudContext : DbContext
+namespace crud.Data;
+
+public class MyCrudDbContext : DbContext
 {
-    public CrudContext(DbContextOptions<CrudContext> options) : base(options){}
+    public MyCrudDbContext(DbContextOptions<MyCrudDbContext> options) : base(options)
+    {
+        
+    }
     public DbSet<Peserta> Peserta { get; set; }
     public DbSet<Test> Test { get; set; }
 

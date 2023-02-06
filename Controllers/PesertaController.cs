@@ -48,7 +48,7 @@ public class PesertaController : ControllerBase
     }
 
     [Route("id")]
-    [HttpDelete]
+    [HttpDelete("{id}")]
     public async Task<IActionResult> DeletePesertaAsync(string id)
     {
         var pesertaToDelete = await _myCrudDbContext.Peserta.FindAsync(id);

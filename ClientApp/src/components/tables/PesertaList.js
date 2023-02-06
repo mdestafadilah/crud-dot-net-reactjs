@@ -22,8 +22,8 @@ export default function PesertaList() {
           return(
                 <tr key = {index} className={index%2 === 0?'odd':'even'}>
                     <td>{index + 1}</td>
-                    <td>{user.namaPeserta}</td>
-                    <td>{user.namaTest}</td>
+                    <td>{user.namaDepan}</td>
+                    <td>{user.namaBelakang}</td>
                     <td>
                         <button className="btn btn-primary">Delete</button>
                         <button className="btn btn-info">Edit</button>

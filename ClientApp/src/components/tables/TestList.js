@@ -1,18 +1,22 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 
 export default function TestList() {
 
-    const peserta = [
-        {'id':1,namaTest:'Algoritma'},
-        {'id':2,namaTest:'Psikotest'},
-        {'id':3,namaTest:'Koding'},
-        {'id':4,namaTest:'Tingkah'}
-      ];
+    const [dataTest, setDataTest] = useState([]);
+
+    useEffect(() => {
+        axios.get("https://localhost:7211/api/Test").then((res) => {
+            setDataTest((data) => {
+                return res.data;
+            })
+        })
+    },[])
+
+      console.log('test length:::', dataTest.length)
+      if (dataTest.length === 0) return null
   
-      console.log('peserta length:::', peserta.length)
-      if (peserta.length === 0) return null
-  
-      const PesertaRow = (user,index) => {
+      const TestRow = (user,index) => {
   
           return(
                 <tr key = {index} className={index%2 === 0?'odd':'even'}>
@@ -26,7 +30,7 @@ export default function TestList() {
             )
       }
   
-      const pesertaTable = peserta.map((user,index) => PesertaRow(user,index))
+      const testTabel = dataTest.map((user,index) => TestRow(user,index))
   
       return(
           <div className="container">
@@ -41,7 +45,7 @@ export default function TestList() {
                   </tr>
                   </thead>
                   <tbody>
-                      {pesertaTable}
+                      {testTabel}
                   </tbody>
               </table>
           </div>

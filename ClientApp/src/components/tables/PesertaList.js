@@ -1,16 +1,21 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 
 export default function PesertaList() {
 
-    const peserta = [
-        {'id':1,namaPeserta:'haikal',namaTest:'abdullah', status:'Selesai'},
-        {'id':2,namaPeserta:'ziyad',namaTest:'muhammad', status:'Selesai'},
-        {'id':3,namaPeserta:'shaka',namaTest:'abdurrahman', status:'Selesai'},
-        {'id':4,namaPeserta:'desta',namaTest:'fadilah', status:'Selesai'}
-      ];
+    // array state peserta
+    const [dataPeserta, setDataPeserta] = useState([]);
+
+    useEffect(() => {
+        axios.get("https://localhost:7211/api/Peserta").then((res) => {
+            setDataPeserta((data) => {
+                return res.data;
+            })
+        })
+    },[]);
   
-      console.log('peserta length:::', peserta.length)
-      if (peserta.length === 0) return null
+      console.log('peserta length:::', dataPeserta.length)
+      if (dataPeserta.length === 0) return null
   
       const PesertaRow = (user,index) => {
   
@@ -27,7 +32,7 @@ export default function PesertaList() {
             )
       }
   
-      const pesertaTable = peserta.map((user,index) => PesertaRow(user,index))
+      const pesertaTable = dataPeserta.map((user,index) => PesertaRow(user,index))
   
       return(
           <div className="container">

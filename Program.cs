@@ -5,13 +5,13 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+var connectionString = "Data Source=HP-PROBOOK;Initial Catalog=catalis;Integrated Security=True;TrustServerCertificate=True;";
+
 builder.Services.AddControllersWithViews();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddDbContext<MyCrudDbContext>( options => {
-    options.UseSqlServer(builder.Configuration.GetConnectionString("MyCrudDbConnection"));
-});
+builder.Services.AddDbContext<MyCrudDbContext>(options => options.UseSqlServer(connectionString));
 
 var app = builder.Build();
 

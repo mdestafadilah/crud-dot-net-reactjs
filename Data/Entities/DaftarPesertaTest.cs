@@ -2,7 +2,7 @@ namespace crud.Data.Entities;
 
 public class DaftarPesertaTest 
 {
-    public int Id { get; set; }
-    public int PesertaId { get; set; }
-    public int TestId { get; set; }
+    public string? Id { get; set; }
+    public string? PesertaId { get; set; }
+    public string? TestId { get; set; }
 }

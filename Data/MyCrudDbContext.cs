@@ -9,24 +9,24 @@ public class MyCrudDbContext : DbContext
     public DbSet<Test>? Test { get; set; }                  = null;
     public DbSet<PesertaTest>? PesertaTest { get; set; }    = null;
 
-    private readonly IConfiguration _configuration;
+    // private readonly IConfiguration _configuration;
 
-    public MyCrudDbContext(DbContextOptions<MyCrudDbContext> options, IConfiguration configuration) : base(options)
+    public MyCrudDbContext(DbContextOptions<MyCrudDbContext> options /*,IConfiguration configuration*/ ) : base(options)
     {
-        _configuration = configuration;
+        // _configuration = configuration;
     }
 
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-        modelBuilder.Entity<PesertaTest>().HasKey(x => new { x.PesertaId, x.TestId });
-        modelBuilder.Entity<PesertaTest>().HasOne(x => x.Peserta)
-                                          .WithMany(x => x.Test)
-                                          .HasForeignKey(x => x.PesertaId);
-        modelBuilder.Entity<PesertaTest>().HasOne(x => x.Test)
-                                          .WithMany(x => x.Peserta)
-                                          .HasForeignKey(x => x.TestId);
-        base.OnModelCreating(modelBuilder);
-    }
+    // protected override void OnModelCreating(ModelBuilder modelBuilder)
+    // {
+    //     modelBuilder.Entity<PesertaTest>().HasKey(x => new { x.PesertaId, x.TestId });
+    //     modelBuilder.Entity<PesertaTest>().HasOne(x => x.Peserta)
+    //                                       .WithMany(x => x.Test)
+    //                                       .HasForeignKey(x => x.PesertaId);
+    //     modelBuilder.Entity<PesertaTest>().HasOne(x => x.Test)
+    //                                       .WithMany(x => x.Peserta)
+    //                                       .HasForeignKey(x => x.TestId);
+    //     base.OnModelCreating(modelBuilder);
+    // }
 
     // protected override void OnConfiguring(DBContextOptionsBuilder optionsBuilder)
     // {

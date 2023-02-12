@@ -19,8 +19,11 @@ builder.Services.AddCors(options =>
     options.AddPolicy(name: MyAllowSpecificOrigins,
                       policy  =>
                       {
-                        policy.WithOrigins("https://localhost:44454",
-                                             "https://persahabtan.co.id");
+                        policy.AllowAnyHeader()
+                              .AllowAnyMethod()
+                              .SetIsOriginAllowed(origin => true)
+                              .AllowCredentials()
+                              .WithOrigins("https://localhost:44454","https://persahabatan.co.id");
                       });
 });
 

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { Alert } from 'reactstrap';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { Alert } from "reactstrap";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function PesertaForm(props) {
 	const initPeserta = { id: null, namaDepan: "", namaBelakang: "" };
@@ -34,11 +34,9 @@ export default function PesertaForm(props) {
 				namaBelakang,
 			};
 			// handleChangeInput(e, props.addPeserta(peserta));
-			axios.post('https://localhost:7211/api/Peserta', peserta)
-				 .then((res) => {
-					navigate("/peserta");
-				 })
-			
+			axios.post("https://localhost:7211/api/Peserta", peserta).then((res) => {
+				navigate("/peserta");
+			});
 		} else {
 			errorMsg = "Tolong Isi semua!";
 		}

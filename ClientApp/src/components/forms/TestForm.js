@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { Alert } from "reactstrap";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function TestForm() {
 	const initTest = { id: null, namaTest: "" };
@@ -8,6 +10,8 @@ export default function TestForm() {
 
 	const [errorMsg, setErrorMsg] = useState("");
 	const { namaTest } = test;
+
+	const navigate = useNavigate();
 
 	const handleOnSubmit = (e) => {
 		e.preventDefault();
@@ -28,7 +32,9 @@ export default function TestForm() {
 				namaTest,
 			};
 			// handleChangeInput(e, props.addPeserta(test));
-			console.log(test);
+			axios.post("https://localhost:7211/api/Test", test).then((res) => {
+				navigate("/test");
+			});
 		} else {
 			errorMsg = "Tolong Isi semua!";
 		}

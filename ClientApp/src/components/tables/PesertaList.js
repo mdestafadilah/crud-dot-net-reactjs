@@ -25,8 +25,8 @@ export default function PesertaList() {
                     <td>{user.namaDepan}</td>
                     <td>{user.namaBelakang}</td>
                     <td>
-                        <button className="btn btn-primary">Delete</button>
-                        <button className="btn btn-info">Edit</button>
+                        <button onClick={() => deletePeserta(user.id)} className="btn btn-primary">Delete</button>
+                        <button onClick={() => editPeserta(user.id)} className="btn btn-info">Edit</button>
                     </td>
                 </tr>
             )

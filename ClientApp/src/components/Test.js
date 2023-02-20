@@ -1,17 +1,13 @@
 import React from "react";
-import TestForm from "./forms/TestForm";
+import AddTestForm from "./forms/AddTestForm";
 import TestList from "./tables/TestList";
 
 export const Test = () => {
-	const handleOnSubmit = (peserta) => {
-		console.log(peserta);
-	};
-
 	return (
 		<>
 			<div className="row">
 				<div className="col-md-5">
-					<TestForm handleSubmit={handleOnSubmit} />
+					<AddTestForm />
 				</div>
 				<div className="col-md-5">
 					<TestList />

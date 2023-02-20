@@ -23,8 +23,8 @@ export default function TestList() {
                     <td>{index + 1}</td>
                     <td>{user.namaTest}</td>
                     <td>
-                        <button className="btn btn-primary">Delete</button>
-                        <button className="btn btn-info">Edit</button>
+                        <button onClick={() => deleteTest() } className="btn btn-primary">Delete</button>
+                        <button onClick={() => editTest() } className="btn btn-info">Edit</button>
                     </td>
                 </tr>
             )

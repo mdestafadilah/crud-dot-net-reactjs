@@ -4,7 +4,7 @@ import { Alert } from "reactstrap";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-export default function TestForm() {
+export default function AddTestForm() {
 	const initTest = { id: null, namaTest: "" };
 	const [test, setTest] = useState(initTest);
 

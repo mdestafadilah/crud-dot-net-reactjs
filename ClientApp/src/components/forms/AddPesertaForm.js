@@ -4,7 +4,7 @@ import { Alert } from "reactstrap";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-export default function PesertaForm(props) {
+export default function AddPesertaForm(props) {
 	const initPeserta = { id: null, namaDepan: "", namaBelakang: "" };
 	const [peserta, setPeserta] = useState(initPeserta);
 

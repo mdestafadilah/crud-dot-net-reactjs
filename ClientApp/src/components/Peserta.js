@@ -1,5 +1,5 @@
 import React from "react";
-import PesertaForm from "./forms/PesertaForm";
+import AddPesertaForm from "./forms/AddPesertaForm";
 import PesertaList from "./tables/PesertaList";
 
 export const Peserta = () => {
@@ -7,7 +7,7 @@ export const Peserta = () => {
 		<>
 			<div className="row">
 				<div className="col-md-5">
-					<PesertaForm />
+					<AddPesertaForm />
 				</div>
 				<div className="col-md-7">
 					<PesertaList />

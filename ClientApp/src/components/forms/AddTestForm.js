@@ -32,9 +32,13 @@ export default function AddTestForm() {
 				namaTest,
 			};
 			// handleChangeInput(e, props.addPeserta(test));
-			axios.post("https://localhost:7211/api/Test", test).then((res) => {
-				navigate("/test");
-			});
+			axios.post("https://localhost:7211/api/Test", test)
+				.then((res) => {
+					console.log(res);
+					window.location.reload();
+				}).catch(error => {
+					console.log("Proses submit gagal", error);
+				})
 		} else {
 			errorMsg = "Tolong Isi semua!";
 		}

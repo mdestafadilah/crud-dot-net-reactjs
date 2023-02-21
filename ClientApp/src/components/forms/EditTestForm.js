@@ -4,7 +4,7 @@ import { Alert } from "reactstrap";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-export default function AddTestForm() {
+export default function EditTestForm(props) {
 	const initTest = { id: null, namaTest: "" };
 	const [test, setTest] = useState(initTest);
 
@@ -62,12 +62,16 @@ export default function AddTestForm() {
 							id="namaTest"
 							placeholder="Nama Test" 
 							onChange={handleChangeInput}
+							value=''
 						/>
 					</div>
 				</div>
 				<br />
 				<button type="button" className="btn btn-danger" onClick={handleOnSubmit}>
-					Tambah
+					Edit
+				</button>
+				<button type="submit" onClick={() => setEditing(false)}>
+					Cancel
 				</button>
 			</form>
 		</>

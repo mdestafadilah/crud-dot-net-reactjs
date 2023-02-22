@@ -44,7 +44,7 @@ public class TestController : ControllerBase
     {
         _myCrudDbContext.Test.Update(testToUpdate);
         await _myCrudDbContext.SaveChangesAsync();
-        return NoContent();
+        return Ok(testToUpdate);
     }
 
     [HttpDelete]

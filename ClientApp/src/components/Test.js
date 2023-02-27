@@ -119,53 +119,51 @@ export const Test = () => {
 	const testTabel = dataTest.map((user, index) => TestRow(user, index));
 
 	return (
-		<>
-			<div className="row">
-				<div className="col-md-5">
-					<h2>Tambah Test</h2>
-					{errorMsg && <Alert color="danger">{errorMsg}</Alert>}
-					<form>
-						<div className="row">
-							<div className="form-group col-md-12">
-								<label htmlFor="namaTest">Nama Test</label>
-								<input
-									type="text"
-									className="form-control"
-									name="namaTest"
-									id="namaTest"
-									placeholder="Nama Test"
-									onChange={handleChangeInput}
-									value={namaTest}
-								/>
-							</div>
+		<div className="row">
+			<div className="col-md-5">
+				<h2>Tambah Test</h2>
+				{errorMsg && <Alert color="danger">{errorMsg}</Alert>}
+				<form>
+					<div className="row">
+						<div className="form-group col-md-12">
+							<label htmlFor="namaTest">Nama Test</label>
+							<input
+								type="text"
+								className="form-control"
+								name="namaTest"
+								id="namaTest"
+								placeholder="Nama Test"
+								onChange={handleChangeInput}
+								value={namaTest}
+							/>
 						</div>
-						<br />
-						<button
-							type="button"
-							className="btn btn-danger"
-							onClick={handleOnSubmit}
-						>
-							Tambah
-						</button>
-					</form>
-				</div>
-				<div className="col-md-5">
-					<div className="container">
-						<h2>Daftar Peserta</h2>
-						<br />
-						<table className="table table-bordered">
-							<thead>
-								<tr>
-									<th>Id</th>
-									<th>Nama Test</th>
-									<th>Action</th>
-								</tr>
-							</thead>
-							<tbody>{testTabel}</tbody>
-						</table>
 					</div>
+					<br />
+					<button
+						type="button"
+						className="btn btn-danger"
+						onClick={handleOnSubmit}
+					>
+						Tambah
+					</button>
+				</form>
+			</div>
+			<div className="col-md-5">
+				<div className="container">
+					<h2>Daftar Peserta</h2>
+					<br />
+					<table className="table table-bordered">
+						<thead>
+							<tr>
+								<th>Id</th>
+								<th>Nama Test</th>
+								<th>Action</th>
+							</tr>
+						</thead>
+						<tbody>{testTabel}</tbody>
+					</table>
 				</div>
 			</div>
-		</>
+		</div>
 	);
 };

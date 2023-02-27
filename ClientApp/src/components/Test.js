@@ -54,6 +54,40 @@ export const Test = () => {
 		setErrorMsg(errorMsg);
 	};
 
+	const handleUpdateSubmit = (e) => {
+		e.preventDefault();
+
+		// Assign state to array
+		const values = [namaTest];
+		let errorMsg = "";
+
+		// Clean HTML using Every Function
+		const allFieldsFilled = values.every((field) => {
+			const value = `${field}`.trim();
+			return value !== "" && value !== "0";
+		});
+
+		if (allFieldsFilled) {
+			const test = {
+				id: currentTest.id,
+				namaTest,
+			};
+			// handleChangeInput(e, props.addPeserta(test));
+			axios
+				.put("https://localhost:7211/api/test", test)
+				.then((res) => {
+					console.log(res);
+					window.location.reload();
+				})
+				.catch((error) => {
+					console.log("Proses update gagal", error);
+				});
+		} else {
+			errorMsg = "Tolong Isi semua!";
+		}
+		setErrorMsg(errorMsg);
+	};
+
 	const editTest = (id) => {
 		// setEditing(true);
 		axios.get("https://localhost:7211/api/test/id?id=" + id).then((res) => {
@@ -119,7 +153,8 @@ export const Test = () => {
 	};
 	const testTabel = dataTest.map((user, index) => TestRow(user, index));
 
-	return ( //console.log(currentTest),
+	return (
+		//console.log(currentTest),
 		<div className="row">
 			<div className="col-md-5">
 				<h2>Tambah Test</h2>
@@ -140,13 +175,26 @@ export const Test = () => {
 						</div>
 					</div>
 					<br />
-					<button
-						type="button"
-						className="btn btn-danger"
-						onClick={handleOnSubmit}
-					>
-						Tambah
-					</button>
+
+					{!currentTest.id
+						? (
+								<button
+									type="button"
+									className="btn btn-danger"
+									onClick={handleOnSubmit}
+								>
+									Tambah
+								</button>
+						  )
+						: (
+								<button
+									type="button"
+									className="btn btn-info"
+									onClick={handleUpdateSubmit}
+								>
+									Edit
+								</button>
+						  )}
 				</form>
 			</div>
 			<div className="col-md-5">

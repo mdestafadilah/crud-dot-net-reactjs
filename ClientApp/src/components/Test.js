@@ -7,6 +7,7 @@ export const Test = () => {
 	const initTest = { id: null, namaTest: "" };
 	const [test, setTest] = useState(initTest);
 	const [dataTest, setDataTest] = useState([]);
+	const [currentTest, setCurrentTest] = useState([]);
 	const [errorMsg, setErrorMsg] = useState("");
 	const { namaTest } = test;
 
@@ -118,7 +119,7 @@ export const Test = () => {
 	};
 	const testTabel = dataTest.map((user, index) => TestRow(user, index));
 
-	return (
+	return ( //console.log(currentTest),
 		<div className="row">
 			<div className="col-md-5">
 				<h2>Tambah Test</h2>
@@ -134,7 +135,7 @@ export const Test = () => {
 								id="namaTest"
 								placeholder="Nama Test"
 								onChange={handleChangeInput}
-								value={namaTest}
+								defaultValue={currentTest.namaTest}
 							/>
 						</div>
 					</div>

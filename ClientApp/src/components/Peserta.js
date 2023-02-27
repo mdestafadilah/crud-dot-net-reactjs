@@ -7,12 +7,12 @@ export const Peserta = () => {
 	const initPeserta = { id: null, namaDepan: "", namaBelakang: "" };
 	const [peserta, setPeserta] = useState(initPeserta);
 	const [dataPeserta, setDataPeserta] = useState([]);
-
+	const [currentPeserta, setCurrentPeserta] = useState([]);
 	const [errorMsg, setErrorMsg] = useState("");
 	const { namaDepan, namaBelakang } = peserta;
 
 	useEffect(() => {
-        axios.get("https://localhost:7211/api/Peserta").then((res) => {
+        axios.get("https://localhost:7211/api/peserta").then((res) => {
             setDataPeserta((data) => {
                 return res.data;
             })
@@ -40,8 +40,42 @@ export const Peserta = () => {
 				namaBelakang,
 			};
 			// handleChangeInput(e, props.addPeserta(peserta));
-			axios.post("https://localhost:7211/api/Peserta", peserta).then((res) => {
+			axios.post("https://localhost:7211/api/peserta", peserta).then((res) => {
 				navigate("/peserta");
+			});
+		} else {
+			errorMsg = "Tolong Isi semua!";
+		}
+		setErrorMsg(errorMsg);
+	};
+
+	const handleUpdateSubmit = (e) => {
+		e.preventDefault();
+
+		// Assign state to array
+		const values = [namaDepan, namaBelakang];
+		let errorMsg = "";
+
+		// Clean HTML using Every Function
+		const allFieldsFilled = values.every((field) => {
+			const value = `${field}`.trim();
+			return value !== "" && value !== "0";
+		});
+
+		if (allFieldsFilled) {
+			const peserta = {
+				id: currentPeserta.id,
+				namaDepan,
+				namaBelakang,
+			};
+			// handleChangeInput(e, props.addPeserta(peserta));
+			axios.put("https://localhost:7211/api/peserta", peserta)
+			.then((res) => {
+				console.log(res);
+				window.location.reload();
+			})
+			.catch((error) => {
+				console.log("Proses update gagal", error);
 			});
 		} else {
 			errorMsg = "Tolong Isi semua!";
@@ -55,6 +89,36 @@ export const Peserta = () => {
 		setPeserta({ ...peserta, [name]: value });
 	};
 
+	const deletePeserta = (id) => {
+		if (window.confirm("Yakin ingin dihapus?")) {
+			axios
+				.delete("https://localhost:7211/api/peserta/id?id=" + id)
+
+				// handle berhasil
+				.then((response) => {
+					console.log(response);
+					if (response.status === 204) {
+						console.log(response);
+						window.location.reload();
+					}
+				})
+
+				// handle error
+				.catch((response) => {
+					console.log(response);
+				});
+		}
+	}
+
+	const editPeserta = (id) => {
+		axios.get("https://localhost:7211/api/peserta/id?id=" + id).then((res) => {
+			//console.log(res)
+			if (res) {
+				setCurrentPeserta(res.data);
+			}
+		});
+	}
+
 	// Table builder
 	if (dataPeserta.length === 0) return null;
 	const PesertaRow = (user, index) => {
@@ -65,12 +129,12 @@ export const Peserta = () => {
 				<td>{user.namaBelakang}</td>
 				<td>
 					<button
-						onClick={() => deletePeserta(user.id)}
+						onClick={() => deletePeserta(`${user.id}`)}
 						className="btn btn-primary"
 					>
 						Delete
 					</button>
-					<button onClick={() => editPeserta(user.id)} className="btn btn-info">
+					<button onClick={() => editPeserta(`${user.id}`)} className="btn btn-info">
 						Edit
 					</button>
 				</td>
@@ -99,7 +163,7 @@ export const Peserta = () => {
 									id="namaDepan"
 									placeholder="Nama Depan"
 									onChange={handleChangeInput}
-									value={peserta.namaDepan}
+									defaultValue={currentPeserta.namaDepan}
 								/>
 							</div>
 							<div className="form-group col-md-12">
@@ -111,18 +175,30 @@ export const Peserta = () => {
 									id="namaBelakang"
 									placeholder="Nama Belakang"
 									onChange={handleChangeInput}
-									value={peserta.namaBelakang}
+									defaultValue={currentPeserta.namaBelakang}
 								/>
 							</div>
 						</div>
 						<br />
-						<button
-							type="submit"
-							className="btn btn-danger"
-							onClick={handleOnSubmit}
-						>
-							Tambah
-						</button>
+						{!currentPeserta.id
+						? (
+								<button
+									type="button"
+									className="btn btn-danger"
+									onClick={handleOnSubmit}
+								>
+									Tambah
+								</button>
+						  )
+						: (
+								<button
+									type="button"
+									className="btn btn-info"
+									onClick={handleUpdateSubmit}
+								>
+									Edit
+								</button>
+						  )}
 					</form>
 				</div>
 				<div className="col-md-7">

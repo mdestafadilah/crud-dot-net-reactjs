@@ -54,6 +54,7 @@ export const Test = () => {
 		setErrorMsg(errorMsg);
 	};
 
+	// submit with ID
 	const handleUpdateSubmit = (e) => {
 		e.preventDefault();
 
@@ -88,6 +89,7 @@ export const Test = () => {
 		setErrorMsg(errorMsg);
 	};
 
+	// onClick Edit
 	const editTest = (id) => {
 		// setEditing(true);
 		axios.get("https://localhost:7211/api/test/id?id=" + id).then((res) => {
